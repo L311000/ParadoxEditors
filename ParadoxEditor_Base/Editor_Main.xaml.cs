@@ -1,6 +1,7 @@
 ﻿using ParadoxEditor_Base.Editor_Components;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace ParadoxEditor_Base
 
         private void InitialiseEditor()
         {
-            SetExeDirectory_00();
+            SetDirectoryPaths_00();
 
             CreateDirectories_01();
 
@@ -46,15 +47,24 @@ namespace ParadoxEditor_Base
             LoadSettings_04();
         }
         #region Initialise Editor
-        private void SetExeDirectory_00()
+        private void SetDirectoryPaths_00()
         {
             string exe = System.Reflection.Assembly.GetExecutingAssembly().Location;
             PathDirectoryExe = System.IO.Path.GetDirectoryName(exe);
+
+            string editorDir = PathDirectoryExe + @"\Editor";
+
+            PathDirectoryModules = editorDir + @"\Modules";
+            PathDirectoryEditorLocalisations = editorDir + @"\Localisations";
+            PathDirectoryEditorImages = editorDir + @"\Images";
+
+            PathDirectoryMods = PathDirectoryExe + @"\Mods";
+
         }
 
         private void CreateDirectories_01() //TO DO
         {
-
+            
 
         }
 

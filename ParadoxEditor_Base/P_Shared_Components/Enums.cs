@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace ParadoxEditor_Base.P_Shared_Components
 {
-    public enum Language
+    public enum P_Language
     {
         none, english, german
     }
 
-    public enum LanguageTag
+    public enum P_LanguageTag
     {
         NONE, ENG, GER
     }
 
     public static class EnumConversions
     {
-        public static Language ToLanguage(this string text)
+        public static P_Language ToLanguage(this string text)
         {
-            Language language = Language.none;
+            P_Language language = P_Language.none;
             try
             {
-                language = Enum.Parse<Language>(text);
+                language = Enum.Parse<P_Language>(text);
             }
             catch (Exception)
             {
@@ -31,20 +31,20 @@ namespace ParadoxEditor_Base.P_Shared_Components
             return language;
         }
 
-        public static LanguageTag ToLanguageTag(this string text)
+        public static P_LanguageTag ToLanguageTag(this string text)
         {
-            Language l = Language.none;
-            LanguageTag tag = LanguageTag.NONE;
+            P_Language l = P_Language.none;
+            P_LanguageTag tag = P_LanguageTag.NONE;
             try
             {
-                l = Enum.Parse<Language>(text);
-                if (l == Language.english)
+                l = Enum.Parse<P_Language>(text);
+                if (l == P_Language.english)
                 {
-                    tag = LanguageTag.ENG;
+                    tag = P_LanguageTag.ENG;
                 }
-                else if (l == Language.german)
+                else if (l == P_Language.german)
                 {
-                    tag = LanguageTag.GER;
+                    tag = P_LanguageTag.GER;
                 }
             }
             catch (Exception)

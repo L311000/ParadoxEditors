@@ -21,31 +21,57 @@ namespace ParadoxEditor_Base
     public partial class Editor_Main : Window
     {
         public EditorSettings Settings { get; set; } = new();
+        public string PathFileSettings { get; set; }
+        public string PathDirectoryExe { get; set; }
+        public string PathDirectoryModules { get; set; }
+        public string PathDirectoryMods { get; set; }
+        public string PathDirectoryEditorLocalisations { get; set; }
+        public string PathDirectoryEditorImages { get; set; }
         public Editor_Main()
         {
             InitializeComponent();
+            InitialiseEditor();
         }
 
         private void InitialiseEditor()
         {
+            SetExeDirectory_00();
+
             CreateDirectories_01();
+
             CreateFiles_02();
-            LoadSettings_03();
+
+            LoadEditorLocalisations_03();
+
+            LoadSettings_04();
+        }
+        #region Initialise Editor
+        private void SetExeDirectory_00()
+        {
+            string exe = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            PathDirectoryExe = System.IO.Path.GetDirectoryName(exe);
         }
 
-        private void CreateDirectories_01()
+        private void CreateDirectories_01() //TO DO
+        {
+
+
+        }
+
+        private void CreateFiles_02() //TO DO
         {
 
         }
 
-        private void CreateFiles_02()
+        private void LoadEditorLocalisations_03() //TO DO
         {
 
         }
 
-        private void LoadSettings_03()
+        private void LoadSettings_04() //TO DO
         {
 
         }
+        #endregion
     }
 }

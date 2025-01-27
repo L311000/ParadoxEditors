@@ -1,4 +1,5 @@
 ﻿using ParadoxEditor_Base.Editor_Components;
+using ParadoxEditor_Base.P_Shared_Components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +25,6 @@ namespace ParadoxEditor_Base
         public EditorSettings Settings { get; set; } = new();
         public string PathFileSettings { get; set; }
         public string PathDirectoryExe { get; set; }
-        public string PathDirectoryModules { get; set; }
         public string PathDirectoryMods { get; set; }
         public string PathDirectoryEditorLocalisations { get; set; }
         public string PathDirectoryEditorImages { get; set; }
@@ -36,25 +36,30 @@ namespace ParadoxEditor_Base
 
         private void InitialiseEditor()
         {
-            SetDirectoryPaths_00();
+            LoadEditorLocalisations_00();
 
-            CreateDirectories_01();
+            SetDirectoryPaths_01();
 
-            CreateFiles_02();
+            CreateDirectories_02();
 
-            LoadEditorLocalisations_03();
+            CreateFiles_03();
 
             LoadSettings_04();
         }
+
         #region Initialise Editor
-        private void SetDirectoryPaths_00()
+        private void LoadEditorLocalisations_00() //TO DO
+        {
+
+        }
+
+        private void SetDirectoryPaths_01()
         {
             string exe = System.Reflection.Assembly.GetExecutingAssembly().Location;
             PathDirectoryExe = System.IO.Path.GetDirectoryName(exe);
 
             string editorDir = PathDirectoryExe + @"\Editor";
 
-            PathDirectoryModules = editorDir + @"\Modules";
             PathDirectoryEditorLocalisations = editorDir + @"\Localisations";
             PathDirectoryEditorImages = editorDir + @"\Images";
 
@@ -62,26 +67,40 @@ namespace ParadoxEditor_Base
 
         }
 
-        private void CreateDirectories_01() //TO DO
+        private void CreateDirectories_02()
         {
-            
-
+            if (!Directory.Exists(PathDirectoryEditorLocalisations))
+            {
+                Directory.CreateDirectory(PathDirectoryEditorLocalisations);
+                Globals.CreateLanguageDirectories(PathDirectoryEditorLocalisations);
+            }
+            if (!Directory.Exists(PathDirectoryEditorImages))
+            {
+                Directory.CreateDirectory(PathDirectoryEditorImages);
+            }
+            if (!Directory.Exists(PathDirectoryMods))
+            {
+                Directory.CreateDirectory(PathDirectoryMods);
+            }
         }
 
-        private void CreateFiles_02() //TO DO
+        private void CreateFiles_03() //TO DO
         {
-
+            PathFileSettings = PathDirectoryExe + @"\Settings.xml";
+            if (!File.Exists(PathFileSettings))
+            {
+                var f = File.Create(PathFileSettings);
+                f.Close();
+            }
         }
-
-        private void LoadEditorLocalisations_03() //TO DO
-        {
-
-        }
-
         private void LoadSettings_04() //TO DO
         {
+            Settings = new();
 
         }
+
+
+        
         #endregion
     }
 }

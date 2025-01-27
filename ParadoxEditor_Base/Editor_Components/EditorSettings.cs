@@ -14,6 +14,13 @@ namespace ParadoxEditor_Base.Editor_Components
         public EditorSetting AutoCreateLocalisation { get; set; }
         public EditorSetting ShowSavePrompt { get; set; }
 
+        public EditorSettings()
+        {
+            SetDefault_Language();
+            SetDefault_AutoCreateLocalisation();
+            SetDefault_ShowSavePrompt();
+        }
+
         public void SetDefault_Language()
         {
             Language = new()
@@ -60,6 +67,11 @@ namespace ParadoxEditor_Base.Editor_Components
             ShowSavePrompt.Localisation.Priority = 0;
             ShowSavePrompt.Localisation.Language = P_Language.english;
             ShowSavePrompt.Localisation.Text = "Show save prompt if unsaved changes are detected:";
+        }
+
+        public static void ImportFromFile(string path)
+        {
+
         }
     }
 }

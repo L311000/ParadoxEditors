@@ -5,8 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParadoxEditor_Base"
         mc:Ignorable="d"
-        Title="Editor_Main" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Name="Window_Editor_Main" Title="Editor_Main" Height="450" Width="800" Closed="Window_Editor_Main_Closed">
 </Window>

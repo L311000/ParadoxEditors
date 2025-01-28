@@ -19,6 +19,9 @@ namespace ParadoxEditor_Base
         public MainWindow()
         {
             InitializeComponent();
+            this.Hide();
+
+            Globals.Editor.Show();
         }
     }
 }

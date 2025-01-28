@@ -1,4 +1,5 @@
-﻿using ParadoxEditor_Base.P_Shared_Components;
+﻿using ParadoxEditor_Base.Editor_Components;
+using ParadoxEditor_Base.P_Shared_Components;
 using ParadoxEditor_Base.P_Shared_Components.Localisations;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace ParadoxEditor_Base.IO
 {
@@ -32,7 +34,7 @@ namespace ParadoxEditor_Base.IO
                         if (loc != null)
                         {
                             loc.Language = c.Language;
-                            c.Localisations.Add(loc);
+                            c.Add(loc);
                         }
                     }
                 }
@@ -41,7 +43,13 @@ namespace ParadoxEditor_Base.IO
             {
             }
             return c;
+        }
 
+        public static EditorSettings ImportSettings(string path)
+        {
+            EditorSettings settings = new EditorSettings();
+            var fileContent = File.ReadAllLines(path);
+            return settings;
         }
     }
 }

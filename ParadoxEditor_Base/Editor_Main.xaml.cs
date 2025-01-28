@@ -1,4 +1,5 @@
 ﻿using ParadoxEditor_Base.Editor_Components;
+using ParadoxEditor_Base.IO;
 using ParadoxEditor_Base.P_Shared_Components;
 using ParadoxEditor_Base.P_Shared_Components.Localisations;
 using System;
@@ -42,9 +43,9 @@ namespace ParadoxEditor_Base
 
             CreateDirectories_02();
 
-            CreateFiles_03();
+            LoadSettings_04();
 
-            LoadSettings_05();
+            CreateFiles_03();
         }
 
         #region Initialise Editor
@@ -85,23 +86,31 @@ namespace ParadoxEditor_Base
             PathFileSettings = PathDirectoryExe + @"\Settings.xml";
             if (!File.Exists(PathFileSettings))
             {
+                Settings = new();
                 var f = File.Create(PathFileSettings);
                 f.Close();
+                Exporter.Export(Settings, PathFileSettings);
             }
         }
-        private void LoadEditorLocalisations_04(P_Language l) //TO DO
-        {
 
-        }
-        private void LoadSettings_05() //TO DO
+        private void LoadSettings_04() //TO DO
         {
             Settings = new();
-            LoadEditorLocalisations_04((P_Language)Settings.Language.Value);
             
+        }
+        private void LoadEditorLocalisations_05() //TO DO
+        {
+
         }
 
 
-        
+
+
         #endregion
+
+        private void Window_Editor_Main_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

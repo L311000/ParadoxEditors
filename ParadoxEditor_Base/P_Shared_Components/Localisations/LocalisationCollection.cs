@@ -10,5 +10,15 @@ namespace ParadoxEditor_Base.P_Shared_Components.Localisations
     {
         public List<Localisation> Localisations { get; set; } = new();
         public P_Language Language { get; set; }
+
+        public void Add(Localisation l)
+        {
+            Localisations.Add(l);
+        }
+
+        public void Remove(Localisation l)
+        {
+            Localisations.Remove(l);
+        }
     }
 }

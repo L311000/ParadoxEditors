@@ -70,7 +70,23 @@ namespace ParadoxEditor_Base
                 {
                     text += c;
                 }
-                return text;
+                return text + t;
+            }
+            catch (Exception)
+            {
+                return t;
+            }
+        }
+        public static string Append(this string t, char c, int amount)
+        {
+            string text = "";
+            try
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    text += c;
+                }
+                return t + text;
             }
             catch (Exception)
             {

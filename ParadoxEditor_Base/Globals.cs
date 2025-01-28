@@ -12,7 +12,7 @@ namespace ParadoxEditor_Base
 {
     public static class Globals
     {
-        public static Window WindowRef { get; set; }
+        public static Editor_Main Editor { get; set; }
         public static void CreateLanguageDirectories(string basePath)
         {
             P_Language[] values = Enum.GetValues<P_Language>();
@@ -32,6 +32,14 @@ namespace ParadoxEditor_Base
         public static Localisation GetLocalisation(bool isEditor)
         {
             Localisation loc = null;
+            if (isEditor)
+            {
+                var collectionRef = Editor.EditorLocalisations;
+            }
+            else
+            {
+
+            }
             return loc;
         }
     }

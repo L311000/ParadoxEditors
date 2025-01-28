@@ -1,5 +1,6 @@
 ﻿using ParadoxEditor_Base.Editor_Components;
 using ParadoxEditor_Base.P_Shared_Components;
+using ParadoxEditor_Base.P_Shared_Components.Localisations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,6 +29,7 @@ namespace ParadoxEditor_Base
         public string PathDirectoryMods { get; set; }
         public string PathDirectoryEditorLocalisations { get; set; }
         public string PathDirectoryEditorImages { get; set; }
+        public LocalisationCollection EditorLocalisations { get; set; }
         public Editor_Main()
         {
             InitializeComponent();
@@ -36,22 +38,16 @@ namespace ParadoxEditor_Base
 
         private void InitialiseEditor()
         {
-            LoadEditorLocalisations_00();
-
             SetDirectoryPaths_01();
 
             CreateDirectories_02();
 
             CreateFiles_03();
 
-            LoadSettings_04();
+            LoadSettings_05();
         }
 
         #region Initialise Editor
-        private void LoadEditorLocalisations_00() //TO DO
-        {
-
-        }
 
         private void SetDirectoryPaths_01()
         {
@@ -93,10 +89,15 @@ namespace ParadoxEditor_Base
                 f.Close();
             }
         }
-        private void LoadSettings_04() //TO DO
+        private void LoadEditorLocalisations_04(P_Language l) //TO DO
+        {
+
+        }
+        private void LoadSettings_05() //TO DO
         {
             Settings = new();
-
+            LoadEditorLocalisations_04((P_Language)Settings.Language.Value);
+            
         }
 
 

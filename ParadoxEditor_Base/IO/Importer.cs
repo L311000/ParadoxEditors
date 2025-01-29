@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
@@ -50,6 +51,40 @@ namespace ParadoxEditor_Base.IO
             EditorSettings settings = new EditorSettings();
             var fileContent = File.ReadAllLines(path);
             return settings;
+        }
+
+        public static T Import<T>(string path)
+        {
+            var fileContent = File.ReadAllLines(path);
+            Type t;
+            char startChar = ']';
+            char endChar = '=';
+
+            object prevCurrent = null;
+            object current = null;
+            object obj = null;
+            foreach (var l in fileContent)
+            {
+                if (!string.IsNullOrWhiteSpace(l))
+                {
+                    if (l.Contains("[Type]"))
+                    {
+                        t = Type.GetType(l.Extract(l.IndexOf(startChar) +1,l.IndexOf(endChar)));
+                        obj = Activator.CreateInstance(t);
+                        current = obj;
+                        prevCurrent = obj;
+                    }
+                    else if (l.Contains("[Property]"))
+                    {
+
+                    }
+                    else if (l.Contains("[Value]"))
+                    {
+
+                    }
+                }
+            }
+            return (T)obj;
         }
     }
 }

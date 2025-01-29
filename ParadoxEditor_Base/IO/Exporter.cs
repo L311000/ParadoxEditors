@@ -48,13 +48,21 @@ namespace ParadoxEditor_Base.IO
                 }
                 text += "\n";
                 tab++;
-                text = text.Append('\t', tab);
 
 
-                if (o.GetType().IsPrimitive || o.GetType() == typeof(string) || o is Type)
+                if (o.GetType().IsPrimitive || o.GetType() == typeof(string) || o is Type || o is Enum)
                 {
-                    text = text.Append('\t', 2);
-                    text += $"[Value]{o.ToStringNN()}";
+                    tab++;
+                    text = text.Append('\t', tab);
+                    if (o is Enum)
+                    {
+                        var e = (Enum) o;
+                        text += $"[Value]{e.ToStringNN()}";
+                    }
+                    else
+                    {
+                        text += $"[Value]{o.ToStringNN()}";
+                    }
                 }
                 else if (!o.GetType().IsValueType)
                 {
@@ -66,7 +74,7 @@ namespace ParadoxEditor_Base.IO
                     }
                 }
                 text += "\n";
-                text = text.Append('\t', 2) + "}";
+                text = text.Append('\t', tab) + "}";
                 text += "\n";
             }
             return text;

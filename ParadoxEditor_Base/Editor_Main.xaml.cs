@@ -39,6 +39,8 @@ namespace ParadoxEditor_Base
 
         private void InitialiseEditor()
         {
+            Mehlmann_Shared.IO.Exporter.ExcludesTypes.Add(typeof(Localisation));
+
             SetDirectoryPaths_01();
 
             CreateDirectories_02();
@@ -89,7 +91,7 @@ namespace ParadoxEditor_Base
                 Settings = new();
                 var f = File.Create(PathFileSettings);
                 f.Close();
-                Exporter.Export(Settings, PathFileSettings);
+                Mehlmann_Shared.IO.Exporter.Export(Settings, PathFileSettings);
             }
         }
 

@@ -12,4 +12,9 @@
     <Folder Include="Mod\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Mehlmann_Shared_Solution\Mehlmann_Shared\Mehlmann_Shared.csproj" />
+    <ProjectReference Include="..\Mehlmann_Shared\Mehlmann_Shared.csproj" />
+  </ItemGroup>
+
 </Project>

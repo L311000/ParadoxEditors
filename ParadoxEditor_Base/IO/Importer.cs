@@ -1,4 +1,5 @@
-﻿using ParadoxEditor_Base.Editor_Components;
+﻿using Mehlmann_Shared;
+using ParadoxEditor_Base.Editor_Components;
 using ParadoxEditor_Base.P_Shared_Components;
 using ParadoxEditor_Base.P_Shared_Components.Localisations;
 using System;
@@ -16,7 +17,7 @@ namespace ParadoxEditor_Base.IO
     {
         public static LocalisationCollection ImportLocalisations(string path)
         {
-            LocalisationCollection c = new LocalisationCollection();
+            LocalisationCollection c = new();
             var content = File.ReadAllLines(path);
             bool languageFound = false;
             try
@@ -45,46 +46,11 @@ namespace ParadoxEditor_Base.IO
             }
             return c;
         }
-
         public static EditorSettings ImportSettings(string path)
         {
             EditorSettings settings = new EditorSettings();
             var fileContent = File.ReadAllLines(path);
             return settings;
-        }
-
-        public static T Import<T>(string path)
-        {
-            var fileContent = File.ReadAllLines(path);
-            Type t;
-            char startChar = ']';
-            char endChar = '=';
-
-            object prevCurrent = null;
-            object current = null;
-            object obj = null;
-            foreach (var l in fileContent)
-            {
-                if (!string.IsNullOrWhiteSpace(l))
-                {
-                    if (l.Contains("[Type]"))
-                    {
-                        t = Type.GetType(l.Extract(l.IndexOf(startChar) +1,l.IndexOf(endChar)));
-                        obj = Activator.CreateInstance(t);
-                        current = obj;
-                        prevCurrent = obj;
-                    }
-                    else if (l.Contains("[Property]"))
-                    {
-
-                    }
-                    else if (l.Contains("[Value]"))
-                    {
-
-                    }
-                }
-            }
-            return (T)obj;
         }
     }
 }
